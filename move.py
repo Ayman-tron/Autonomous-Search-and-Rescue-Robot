@@ -21,7 +21,9 @@ GPIO.output(12, GPIO.LOW)
 GPIO.output(13, GPIO.LOW)
 GPIO.output(15, GPIO.LOW)
 
+
 def main():
+    stop()
     forward()
 #    backward()
 #    right()
@@ -107,6 +109,22 @@ def left():
 
     GPIO.output(15, GPIO.LOW)
     GPIO.output(13, GPIO.HIGH)
+
+    time.sleep(5)
+
+
+def stop():
+    myPWM = GPIO.PWM(3, 100)
+    myPWM.start(10)
+
+    GPIO.output(12, GPIO.LOW)
+    GPIO.output(11, GPIO.LOW)
+
+    myPWM2 = GPIO.PWM(5, 100)
+    myPWM2.start(10)
+
+    GPIO.output(15, GPIO.LOW)
+    GPIO.output(13, GPIO.LOW)
 
     time.sleep(5)
 
