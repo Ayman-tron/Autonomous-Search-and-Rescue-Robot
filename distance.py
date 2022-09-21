@@ -27,11 +27,12 @@ class Sensor:
                 pingTravelTime = echoStopTime - echoStartTime
 
                 distance = 34300 * (pingTravelTime/2)
-                # Rounding to two decimal point
-                print(round(distance, 2), 'cm')
 
                 # sensor requires a delay before sending and receiving the ping
                 time.sleep(0.2)
+                # Rounding to two decimal point
+                #print(round(distance, 2), 'cm')
+                return distance
 
         except KeyboardInterrupt():
             GPIO.cleanup()

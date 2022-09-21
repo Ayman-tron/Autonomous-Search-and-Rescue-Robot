@@ -12,7 +12,6 @@ sensor = Sensor()
 GPIO.setmode(GPIO.BOARD)
 
 # Specifying that the below pins are Output Pins
-#
 # Motor 1 Pins
 GPIO.setup(ENA_PIN, GPIO.OUT)
 GPIO.setup(IN1, GPIO.OUT)
@@ -33,6 +32,9 @@ GPIO.output(IN1, GPIO.LOW)
 GPIO.output(IN2, GPIO.LOW)
 GPIO.output(IN3, GPIO.LOW)
 GPIO.output(IN4, GPIO.LOW)
+
+x = Sensor.ultrasonic()
+print(x)
 
 
 def main():
