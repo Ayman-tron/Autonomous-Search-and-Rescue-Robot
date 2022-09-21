@@ -1,210 +1,103 @@
 import time
 import RPi.GPIO as GPIO
-
+from definitions import *
 GPIO.setmode(GPIO.BOARD)
-# Motor #1
-# PWM Pin 3
-GPIO.setup(3, GPIO.OUT)
-# Pin 11 and 12 allow us to control the direction of the Motor 1
-GPIO.setup(11, GPIO.OUT)
-GPIO.setup(12, GPIO.OUT)
 
-# Motor #2
-# PWM Pin 5
-# Pin 13 and 15 allow us to control the direction of the Motor 1
-GPIO.setup(5, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
-GPIO.setup(15, GPIO.OUT)
+# Robot class with functions that allow Robot to move forward, backward, left and right
 
-GPIO.output(11, GPIO.LOW)
-GPIO.output(12, GPIO.LOW)
-GPIO.output(13, GPIO.LOW)
-GPIO.output(15, GPIO.LOW)
 
+class Robot:
 
-def main():
-    forward(1)
-    time.sleep(1)
-    backward(1)
-    time.sleep(1)
-#    right()
-#    left()
-    reset()
+    # Both motors are rotating forward
 
-# Reset all the GPIO pins by setting them to LOW
+    def forward(self, distance):
+        # Motor # 1
+        # Creating a PWM object
+        myPWM = GPIO.PWM(ENA_PIN, 100)
+        myPWM.start(99)
 
+        GPIO.output(IN1, GPIO.HIGH)
+        GPIO.output(IN2, GPIO.LOW)
 
-def reset():
-    # Cleaning up the GPIO pin for next user
-    GPIO.cleanup()
+        # Motor # 2
+        myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        myPWM2.start(99)
+    #    myPWM.ChangeFrequency(1000)
+        GPIO.output(IN3, GPIO.LOW)
+        GPIO.output(IN4, GPIO.HIGH)
 
-# Both motors are rotating forward
+        # Time measurement is in seconds
+        time.sleep(distance*1)
+        self.stop()
 
+    # Both motors are rotating backward
 
-def forward(distance):
-    # Motor # 1
-    # Creating a PWM object
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(99)
+    def backward(self, distance):
+        myPWM = GPIO.PWM(ENA_PIN, 100)
+        myPWM.start(60)
+        GPIO.output(IN2, GPIO.HIGH)
+        GPIO.output(IN1, GPIO.LOW)
+    #  myPWM.ChangeDutyCycle(99)
+        myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        myPWM2.start(60)
 
-    GPIO.output(11, GPIO.HIGH)
-    GPIO.output(12, GPIO.LOW)
+        GPIO.output(IN4, GPIO.LOW)
+        GPIO.output(IN3, GPIO.HIGH)
 
-    # Motor # 2
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(99)
-#    myPWM.ChangeFrequency(1000)
-    GPIO.output(13, GPIO.LOW)
-    GPIO.output(15, GPIO.HIGH)
+        time.sleep(distance*1)
+        self.stop()
 
-    # Time measurement is in seconds
-    time.sleep(distance*1)
-    stop()
+    # Right motor runs backward while left motor runs forward
 
-# Both motors are rotating backward
+    def right(self, distance):
+        myPWM = GPIO.PWM(ENA_PIN, 100)
+        myPWM.start(20)
 
+        GPIO.output(IN2, GPIO.HIGH)
+        GPIO.output(IN1, GPIO.LOW)
 
-def backward(distance):
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(60)
-    GPIO.output(12, GPIO.HIGH)
-    GPIO.output(11, GPIO.LOW)
-  #  myPWM.ChangeDutyCycle(99)
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(60)
+        myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        myPWM2.start(20)
 
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(13, GPIO.HIGH)
+        GPIO.output(IN4, GPIO.HIGH)
+        GPIO.output(IN3, GPIO.LOW)
 
-    time.sleep(distance*1)
-    stop()
+        time.sleep(distance*1)
+        self.stop()
 
-# Right motor runs backward while left motor runs forward
+    # Right motor runs forward while left motor runs backward
 
+    def left(self, distance):
+        myPWM = GPIO.PWM(ENA_PIN, 100)
+        myPWM.start(10)
 
-def right(distance):
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(20)
+        GPIO.output(IN2, GPIO.LOW)
+        GPIO.output(IN1, GPIO.HIGH)
 
-    GPIO.output(12, GPIO.HIGH)
-    GPIO.output(11, GPIO.LOW)
+        myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        myPWM2.start(10)
 
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(20)
+        GPIO.output(IN4, GPIO.LOW)
+        GPIO.output(IN3, GPIO.HIGH)
 
-    GPIO.output(15, GPIO.HIGH)
-    GPIO.output(13, GPIO.LOW)
+        time.sleep(distance*1)
+        self.stop()
 
-    time.sleep(distance*1)
-    stop()
+    def stop(self):
+        myPWM = GPIO.PWM(3, 100)
+        myPWM.start(10)
 
-# Right motor runs forward while left motor runs backward
+        GPIO.output(IN2, GPIO.LOW)
+        GPIO.output(IN1, GPIO.LOW)
 
+        myPWM2 = GPIO.PWM(5, 100)
+        myPWM2.start(10)
 
-def left(distance):
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(10)
+        GPIO.output(IN4, GPIO.LOW)
+        GPIO.output(IN3, GPIO.LOW)
 
-    GPIO.output(12, GPIO.LOW)
-    GPIO.output(11, GPIO.HIGH)
+        time.sleep(5)
 
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(10)
-
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(13, GPIO.HIGH)
-
-    time.sleep(distance*1)
-    stop()
-
-
-def stop():
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(10)
-
-    GPIO.output(12, GPIO.LOW)
-    GPIO.output(11, GPIO.LOW)
-
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(10)
-
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(13, GPIO.LOW)
-
-    time.sleep(5)
-
-# Below functions will be used to calibrate the distance the robot moves
-# ====================================================================== #
-# ====================================================================== #
-
-
-def calF():
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(100)
-
-    GPIO.output(11, GPIO.HIGH)
-    GPIO.output(12, GPIO.LOW)
-
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(100)
-    GPIO.output(13, GPIO.LOW)
-    GPIO.output(15, GPIO.HIGH)
-
-    # Wait 5 seconds
-    time.sleep(3)
-
-# Both motors are rotating backward
-
-
-def calB():
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(100)
-    GPIO.output(12, GPIO.HIGH)
-    GPIO.output(11, GPIO.LOW)
-
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(100)
-
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(13, GPIO.HIGH)
-
-    time.sleep(3)
-
-# Right motor runs backward while left motor runs forward
-
-
-def calR():
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(100)
-
-    GPIO.output(12, GPIO.HIGH)
-    GPIO.output(11, GPIO.LOW)
-
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(100)
-
-    GPIO.output(15, GPIO.HIGH)
-    GPIO.output(13, GPIO.LOW)
-
-    time.sleep(3)
-
-# Right motor runs forward while left motor runs backward
-
-
-def calL():
-    myPWM = GPIO.PWM(3, 100)
-    myPWM.start(100)
-
-    GPIO.output(12, GPIO.LOW)
-    GPIO.output(11, GPIO.HIGH)
-
-    myPWM2 = GPIO.PWM(5, 100)
-    myPWM2.start(100)
-
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(13, GPIO.HIGH)
-
-    time.sleep(3)
-
-
-main()
+    def reset(self):
+        # Cleaning up the GPIO pin for next user
+        GPIO.cleanup()
