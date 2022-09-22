@@ -33,11 +33,14 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 
 
 def main():
-    robot.forward(1)
-    time.sleep(1)
-    robot.backward(1)
-    time.sleep(1)
-
+    robot.forward(5)
+    time.sleep(0.5)
+    robot.backward(5)
+    time.sleep(0.5)
+    robot.right(5)
+    time.sleep(0.5)
+    robot.backward(5)
+    time.sleep(0.5)
     GPIO.cleanup()
 
 
