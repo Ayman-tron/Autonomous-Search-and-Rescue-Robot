@@ -23,8 +23,9 @@ GPIO.output(13, GPIO.LOW)
 time.sleep(5)
 
 # Reset all the GPIO pins by setting them to LOW
-GPIO.output(11, GPIO.LOW)
-GPIO.output(12, GPIO.LOW)
-GPIO.output(13, GPIO.LOW)
-GPIO.output(15, GPIO.LOW)
+GPIO.cleanup()
+#GPIO.output(11, GPIO.LOW)
+#GPIO.output(12, GPIO.LOW)
+#GPIO.output(13, GPIO.LOW)
+#GPIO.output(15, GPIO.LOW)
 
