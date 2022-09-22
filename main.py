@@ -33,10 +33,10 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 
 
 def main():
-    Robot.calF()
-    # Robot.calB()
-    # Robot.calR()
-    # Robot.calL()
+    robot.calF()
+    # robot.calB()
+    # robot.calR()
+    # robot.calL()
     GPIO.cleanup()
 
 
