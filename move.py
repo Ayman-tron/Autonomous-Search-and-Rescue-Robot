@@ -28,7 +28,6 @@ class Robot:
 
         # Time measurement is in seconds
         time.sleep(distance*1)
-        self.stop()
 
     # Both motors are rotating backward
 
@@ -45,7 +44,6 @@ class Robot:
         GPIO.output(IN3, GPIO.HIGH)
 
         time.sleep(distance*1)
-        self.stop()
 
     # Right motor runs backward while left motor runs forward
 
@@ -63,7 +61,6 @@ class Robot:
         GPIO.output(IN3, GPIO.LOW)
 
         time.sleep(distance*1)
-        self.stop()
 
     # Right motor runs forward while left motor runs backward
 
@@ -81,23 +78,3 @@ class Robot:
         GPIO.output(IN3, GPIO.HIGH)
 
         time.sleep(distance*1)
-        self.stop()
-
-    def stop(self):
-        myPWM = GPIO.PWM(3, 100)
-        myPWM.start(99)
-
-        GPIO.output(IN2, GPIO.LOW)
-        GPIO.output(IN1, GPIO.LOW)
-
-        myPWM2 = GPIO.PWM(5, 100)
-        myPWM2.start(10)
-
-        GPIO.output(IN4, GPIO.LOW)
-        GPIO.output(IN3, GPIO.LOW)
-
-        time.sleep(5)
-
-    def reset(self):
-        # Cleaning up the GPIO pin for next user
-        GPIO.cleanup()
