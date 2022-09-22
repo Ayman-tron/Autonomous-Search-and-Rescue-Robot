@@ -78,3 +78,9 @@ class Robot:
         GPIO.output(IN3, GPIO.HIGH)
 
         time.sleep(distance*1)
+
+    def stop(self):
+        GPIO.output(IN2, GPIO.LOW)
+        GPIO.output(IN1, GPIO.LOW)
+        GPIO.output(IN4, GPIO.LOW)
+        GPIO.output(IN3, GPIO.LOW)
