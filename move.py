@@ -34,12 +34,12 @@ class Robot:
 
     def backward(self, distance):
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(60)
+        myPWM.start(99)
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
     #  myPWM.ChangeDutyCycle(99)
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(60)
+        myPWM2.start(99)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
@@ -51,13 +51,13 @@ class Robot:
 
     def right(self, distance):
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(20)
+        myPWM.start(99)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
 
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(20)
+        myPWM2.start(99)
 
         GPIO.output(IN4, GPIO.HIGH)
         GPIO.output(IN3, GPIO.LOW)
@@ -69,7 +69,7 @@ class Robot:
 
     def left(self, distance):
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(10)
+        myPWM.start(99)
 
         GPIO.output(IN2, GPIO.LOW)
         GPIO.output(IN1, GPIO.HIGH)
@@ -85,7 +85,7 @@ class Robot:
 
     def stop(self):
         myPWM = GPIO.PWM(3, 100)
-        myPWM.start(10)
+        myPWM.start(99)
 
         GPIO.output(IN2, GPIO.LOW)
         GPIO.output(IN1, GPIO.LOW)

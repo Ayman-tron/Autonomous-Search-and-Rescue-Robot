@@ -27,23 +27,19 @@ GPIO.setup(TRIG_PIN, GPIO.OUT)
 GPIO.setup(ECHO_PIN, GPIO.IN)
 
 # robot.stop()
-# Reset all the GPIO pins by setting them to LOW
-GPIO.output(IN1, GPIO.LOW)
-GPIO.output(IN2, GPIO.LOW)
-GPIO.output(IN3, GPIO.LOW)
-GPIO.output(IN4, GPIO.LOW)
 
-x = Sensor.ultrasonic()
-print(x)
+#x = Sensor.ultrasonic()
+# print(x)
 
 
 def main():
     robot.forward(1)
     time.sleep(1)
+    GPIO.cleanup()
     robot.backward(1)
     time.sleep(1)
 
-    robot.reset()
+    GPIO.cleanup()
 
 
 main()

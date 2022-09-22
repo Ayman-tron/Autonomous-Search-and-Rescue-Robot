@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BOARD)
 
 
 class Sensor:
-    def ultrasonic():
+    def ultrasonic(self):
         try:
             while True:
                 GPIO.output(TRIG_PIN, 1)
