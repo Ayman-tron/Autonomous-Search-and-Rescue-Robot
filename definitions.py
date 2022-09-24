@@ -19,3 +19,6 @@ IN4 = 15
 # Pins used to configure UltraSonic Sensor
 TRIG_PIN = 16
 ECHO_PIN = 18
+
+# Pin that reads from the IR sensor to tell us whether an obstacle is present or not
+IR_PIN = 21

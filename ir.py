@@ -1,28 +1,27 @@
 import time
 import RPi.GPIO as GPIO
+from definitions import *
 
 GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(21, GPIO.IN)
+GPIO.setup(IR_PIN, GPIO.IN)
 obstacle_detected = False
 
 
 def obstacle():
-    sensor = GPIO.input(21)
+    readVal = GPIO.input(IR_PIN)
     # No obstacle
-    if sensor == 1:
-        obstacle_detected = False
+    if readVal == 1:
         time.sleep(0.1)
-        return obstacle_detected
+        return readVal
 
     # The IR sensor has been configured to detect any obstacle less than or equal to 5cm
-    elif sensor == 0:
-        obstacle_detected = True
+    elif readVal == 0:
         time.sleep(0.1)
-        return obstacle_detected
+        return readVal
 
 
-#while True:
+# while True:
 #    x = obstacle()
 #    if x:
 #        print("An obstacle is present")
