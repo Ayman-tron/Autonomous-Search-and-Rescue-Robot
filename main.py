@@ -35,19 +35,18 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
-x = sensor.ir()
-
-
 def main():
-    while True:
-        print(x)
-        time.sleep(0.1)
-        # robot.calF()
-        # robot.calB()
-        # robot.calR()
-        # robot.calL()
+
+    time.sleep(0.1)
+    # robot.calF()
+    # robot.calB()
+    # robot.calR()
+    # robot.calL()
 
 
-GPIO.cleanup()
+while True:
+    x = sensor.ir()
+    print("h", x)
+
 
 main()
