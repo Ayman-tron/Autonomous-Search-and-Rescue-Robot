@@ -40,6 +40,7 @@ x = sensor.ir()
 def main():
     while True:
         print(x)
+        time.sleep(0.1)
         # robot.calF()
         # robot.calB()
         # robot.calR()
