@@ -40,8 +40,9 @@ def main():
         while True:
             x = sensor.ir()
             print(x)
-    except KeyboardInterrupt():
-        raise TypeError('Ignore')
+    except (KeyboardInterrupt, TypeError):
+        GPIO.cleanup()
+        print("Cleanup successful")
 
     # robot.calF()
     # robot.calB()
