@@ -11,6 +11,8 @@ sensor = Sensor()
 
 GPIO.setmode(GPIO.BOARD)
 
+# =================================================== #
+# =================== Motor Driver Pin ===================== #
 # Specifying that the below pins are Output Pins
 # Motor 1 Pins
 GPIO.setup(ENA_PIN, GPIO.OUT)
@@ -22,18 +24,19 @@ GPIO.setup(ENB_PIN, GPIO.OUT)
 GPIO.setup(IN3, GPIO.OUT)
 GPIO.setup(IN4, GPIO.OUT)
 
-# Ultrasonic Sensor Pins
+# =================================================== #
+# =================== Ultrasonic Sensor PINS ===================== #
 GPIO.setup(TRIG_PIN, GPIO.OUT)
 GPIO.setup(ECHO_PIN, GPIO.IN)
 
-# robot.stop()
-
-#x = Sensor.ultrasonic()
-# print(x)
+# =================================================== #
+# =================== IR Sensor PIN ===================== #
+GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def main():
-    robot.calF()
+
+    # robot.calF()
     # robot.calB()
     # robot.calR()
     # robot.calL()

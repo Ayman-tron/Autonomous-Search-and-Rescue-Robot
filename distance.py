@@ -9,10 +9,6 @@ class Sensor:
         try:
             while True:
                 GPIO.output(TRIG_PIN, 1)
-                # The Ultrasonic Transmitter in the Sensor generates a 40 KHz Ultrasound. In order to send the 40 KHz Ultrasound, the TRIG Pin of the
-                # Ultrasonic Sensor must be held HIGH for a minimum duration of 10µS. After this, the Ultrasonic Transmitter, will transmits a burst of 8-pulses
-                # of ultrasound at 40 KHz. Immediately, the control circuit in the sensor will change the state of the ECHO pin to HIGH. This pins stays HIGH
-                # until the ultrasound hits an object and returns to the Ultrasonic Receiver. (source: https://www.electronicshub.org/raspberry-pi-ultrasonic-sensor-interface-tutorial/)
                 time.sleep(1E-6)
                 GPIO.output(TRIG_PIN, 0)
 
@@ -37,3 +33,11 @@ class Sensor:
         except KeyboardInterrupt():
             GPIO.cleanup()
             print("Cleanup successful")
+    # The IR sensor has been configured to detect any obstacle less than or equal to 5cm
+    # 0 means there is an obstacle, while 1 means no obstacle
+
+    def ir(self):
+        while True:
+            readVal = GPIO.input(IR_PIN)
+            time.sleep(0.1)
+            return readVal
