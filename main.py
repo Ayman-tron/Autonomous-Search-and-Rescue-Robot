@@ -33,9 +33,11 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 # =================== IR Sensor PIN ===================== #
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+x = sensor.ir()
+
 
 def main():
-
+    print(x)
     # robot.calF()
     # robot.calB()
     # robot.calR()
