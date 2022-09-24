@@ -3,6 +3,7 @@ from move import *
 import RPi.GPIO as GPIO
 from definitions import *
 from distance import *
+
 # Creating a robot object
 robot = Robot()
 
@@ -42,6 +43,8 @@ def main():
     except KeyboardInterrupt():
         GPIO.cleanup()
         print("Cleanup successful")
+    except TypeError():
+        print("")
 
     # robot.calF()
     # robot.calB()
