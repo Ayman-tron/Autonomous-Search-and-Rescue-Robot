@@ -43,6 +43,7 @@ def main():
     except KeyboardInterrupt():
         GPIO.cleanup()
         print("Cleanup successful")
+        raise TypeError('Ignore')
 
     # robot.calF()
     # robot.calB()
