@@ -3,6 +3,7 @@ from move import *
 import RPi.GPIO as GPIO
 from definitions import *
 from distance import *
+from main import *
 # Creating a robot object
 robot = Robot()
 
