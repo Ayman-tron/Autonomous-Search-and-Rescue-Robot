@@ -37,11 +37,6 @@ class Sensor:
     # 0 means there is an obstacle, while 1 means no obstacle
 
     def ir(self):
-        try:
-            readVal = GPIO.input(IR_PIN)
-            time.sleep(0.1)
-            return readVal
-
-        except KeyboardInterrupt():
-            GPIO.cleanup()
-            print("Cleanup successful")
+        readVal = GPIO.input(IR_PIN)
+        time.sleep(0.1)
+        return readVal

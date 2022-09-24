@@ -36,9 +36,13 @@ GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def main():
-    while True:
-        x = sensor.ir()
-        print("h", x)
+    try:
+        while True:
+            x = sensor.ir()
+            print(x)
+    except KeyboardInterrupt():
+        GPIO.cleanup()
+        print("Cleanup successful")
 
     # robot.calF()
     # robot.calB()
