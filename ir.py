@@ -22,9 +22,9 @@ def obstacle():
         return obstacle_detected
 
 
-while True:
-    x = obstacle()
-    if x:
-        print("An obstacle is present")
-    else:
-        print("No obstacle")
+#while True:
+#    x = obstacle()
+#    if x:
+#        print("An obstacle is present")
+#    else:
+#        print("No obstacle")
