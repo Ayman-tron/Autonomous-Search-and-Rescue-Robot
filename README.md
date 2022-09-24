@@ -19,4 +19,4 @@ The components that will be used in the project involve the following:
 ### Documentation on Sensor Configuration
 
 <h1>IR Sensor</h1>
-In case IR Pin 21 is disconnected the internal resistor of the Pi will ensure that the value does not fluctuate between 1 and 0. In this case we are using a pull up resistor which means when the wire is disconnected Pin 21 will read a 1
+In case, Pin 21 is disconnected the internal resistor of the Pi will ensure that the value does not fluctuate between 1 and 0. In this case we are using a pull up resistor which means when the wire is disconnected Pin 21 will read a 1
