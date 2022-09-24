@@ -41,10 +41,11 @@ def main():
             x = sensor.ir()
             print(x)
     except KeyboardInterrupt():
-        GPIO.cleanup()
-        print("Cleanup successful")
-    except TypeError():
-        print("")
+        try:
+            GPIO.cleanup()
+            print("Cleanup successful")
+        except TypeError():
+            print("fffffffffff")
 
     # robot.calF()
     # robot.calB()
