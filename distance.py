@@ -24,9 +24,8 @@ class Sensor:
 
         # sensor requires a delay before sending and receiving the ping
         time.sleep(0.2)
-        # Rounding to two decimal point
-        #print(round(distance, 2), 'cm')
-        return distance
+        # Rounding to two decimal point in cm
+        return (round(distance, 2))
 
     # The IR sensor has been configured to detect any obstacle less than or equal to 5cm
     # 0 means there is an obstacle, while 1 means no obstacle
