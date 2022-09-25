@@ -36,6 +36,7 @@ GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def main():
+    robot.forward(5)
     try:
         while True:
             y = sensor.ultrasonic()
@@ -45,6 +46,7 @@ def main():
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
+
 
     # robot.calF()
     # robot.calB()
