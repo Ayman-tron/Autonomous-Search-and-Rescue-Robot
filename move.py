@@ -10,18 +10,18 @@ class Robot:
 
     # Both motors are rotating forward
 
-    def forward(self, distance):
+    def forward(self, distance, pwm):
         # Motor # 1
         # Creating a PWM object
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
+        myPWM.start(pwm)
 
         GPIO.output(IN1, GPIO.HIGH)
         GPIO.output(IN2, GPIO.LOW)
 
         # Motor # 2
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
+        myPWM2.start(pwm)
     #    myPWM.ChangeFrequency(1000)
         GPIO.output(IN3, GPIO.LOW)
         GPIO.output(IN4, GPIO.HIGH)

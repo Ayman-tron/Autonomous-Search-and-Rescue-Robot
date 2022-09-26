@@ -20,18 +20,19 @@ GPIO.output(15, GPIO.HIGH)
 GPIO.output(13, GPIO.LOW)
 
 # Wait 2.5 seconds
-time.sleep(5)
+time.sleep(10)
+
 
 # Motor # 1
-GPIO.output(12, GPIO.HIGH)
-GPIO.output(11, GPIO.LOW)
+#GPIO.output(12, GPIO.HIGH)
+#GPIO.output(11, GPIO.LOW)
 
 # Motor # 2
-GPIO.output(15, GPIO.LOW)
-GPIO.output(13, GPIO.HIGH)
+#GPIO.output(15, GPIO.LOW)
+#GPIO.output(13, GPIO.HIGH)
 
 # Wait 2.5 seconds
-time.sleep(5)
+#time.sleep(5)
 
 # Reset all the GPIO pins by setting them to LOW
 GPIO.cleanup()
