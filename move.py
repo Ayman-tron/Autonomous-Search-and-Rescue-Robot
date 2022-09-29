@@ -31,14 +31,15 @@ class Robot:
 
     # Both motors are rotating backward
 
-    def backward(self, distance):
+    def backward(self, distance, pwm):
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
+        myPWM.start(pwm)
+
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
     #  myPWM.ChangeDutyCycle(99)
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
+        myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
@@ -47,15 +48,15 @@ class Robot:
 
     # Right motor runs backward while left motor runs forward
 
-    def right(self, distance):
+    def right(self, distance, pwm):
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
+        myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
 
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
+        myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.HIGH)
         GPIO.output(IN3, GPIO.LOW)
@@ -64,15 +65,15 @@ class Robot:
 
     # Right motor runs forward while left motor runs backward
 
-    def left(self, distance):
+    def left(self, distance, pwm):
         myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
+        myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.LOW)
         GPIO.output(IN1, GPIO.HIGH)
 
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
+        myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)

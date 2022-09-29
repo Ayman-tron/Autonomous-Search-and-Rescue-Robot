@@ -16,9 +16,13 @@ IN2 = 12
 IN3 = 13
 IN4 = 15
 
-# Pins used to configure UltraSonic Sensor
-TRIG_PIN = 38
-ECHO_PIN = 40
+# Pins used to configure the UltraSonic Sensor on the right side of the robot
+TRIG_PIN_A = 16
+ECHO_PIN_A = 18
+
+# Pins used to configure the UltraSonic Sensor on the Left side of the robot
+TRIG_PIN_B = 38
+ECHO_PIN_B = 40
 
 # Pin that reads from the IR sensor to tell us whether an obstacle is present or not
 IR_PIN = 21

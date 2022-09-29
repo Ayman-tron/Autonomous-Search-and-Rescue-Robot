@@ -11,6 +11,7 @@ while True:
     print("Acc Z : "+str(accel_data['z']))
     print()
 
+    # Unit degree per second
     gyro_data = mpu.get_gyro_data()
     print("Gyro X : "+str(gyro_data['x']))
     print("Gyro Y : "+str(gyro_data['y']))

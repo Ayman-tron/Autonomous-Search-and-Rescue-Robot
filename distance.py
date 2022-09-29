@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BOARD)
 
 
 class Sensor:
-    def ultrasonic(self):
+    def ultrasonic(self, TRIG_PIN, ECHO_PIN):
         GPIO.output(TRIG_PIN, 1)
         time.sleep(1E-6)
         GPIO.output(TRIG_PIN, 0)
