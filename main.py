@@ -35,6 +35,13 @@ GPIO.setup(ECHO_PIN, GPIO.IN)
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
+def get_data():
+    right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
+    left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
+    x = sensor.ir()
+    return (right, left, x)
+
+
 def main():
     #    robot.forward(5)
  #   time.sleep(0.5)
@@ -44,25 +51,22 @@ def main():
     #    time.sleep(0.5)
     #    robot.forward(10, 70)
     #    time.sleep(0.5)
-    robot.forward(10, 55)
-    time.sleep(0.5)
-#    robot.forward(10, 40)
-#    time.sleep(0.5)
-#    robot.forward(10, 25)
-#    time.sleep(0.5)
-#    robot.forward(10, 10)
+    #    robot.forward(10, 55)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 40)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 25)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 10)
 
     try:
         while True:
-            right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
-            left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
-            x = sensor.ir()
-            print(right, left, x)
+            distance = get_data()
+            print(distance)
 
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
-
 
     # robot.calF()
     # robot.calB()
