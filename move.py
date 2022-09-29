@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BOARD)
 class Robot:
 
     # Both motors are rotating forward
-
+    # distance in meter
     def forward(self, distance, pwm):
         # Motor # 1
         # Creating a PWM object
@@ -25,9 +25,12 @@ class Robot:
     #    myPWM.ChangeFrequency(1000)
         GPIO.output(IN3, GPIO.LOW)
         GPIO.output(IN4, GPIO.HIGH)
-
+        # The Pwm specified won't matter when we have the formula below
+        velocity = 3.155e-3(pwm) + 0.0267
+        # Time
+        t = distance/velocity
         # Time measurement is in seconds
-        time.sleep(distance*1)
+        time.sleep(t)
 
     # Both motors are rotating backward
 

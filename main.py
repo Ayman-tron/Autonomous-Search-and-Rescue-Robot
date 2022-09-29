@@ -46,21 +46,30 @@ def get_data():
 
 
 def main():
-#    robot.backward(20, 15)
-#    time.sleep(2.5)
-#    robot.left(0.5, 60)
-    robot.forward(5, 15)
-#    robot.right(0.99, 60)
-#    robot.backward(6, 60)
+    #    robot.forward(5)
+ #   time.sleep(0.5)
+    robot.forward(2.5, 50)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 85)
+    #    time.sleep(0.5)
+    #robot.forward(10, 70)
+    #    time.sleep(0.5)
+    #robot.backward(10, 70)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 40)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 25)
+    #    time.sleep(0.5)
+    #    robot.forward(10, 10)
 
-    try:
+    '''try:
         while True:
             distance = get_data()
             print(distance)
 
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
-        print(" Cleanup successful")
+        print(" Cleanup successful")'''
 
     # robot.calF()
     # robot.calB()
