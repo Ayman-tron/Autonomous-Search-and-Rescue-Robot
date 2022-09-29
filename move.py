@@ -48,7 +48,7 @@ class Robot:
 
     # Right motor runs backward while left motor runs forward
 
-    def right(self, distance, pwm):
+    def left(self, distance, pwm):
         myPWM = GPIO.PWM(ENA_PIN, 100)
         myPWM.start(pwm)
 
@@ -65,7 +65,7 @@ class Robot:
 
     # Right motor runs forward while left motor runs backward
 
-    def left(self, distance, pwm):
+    def right(self, distance, pwm):
         myPWM = GPIO.PWM(ENA_PIN, 100)
         myPWM.start(pwm)
 
