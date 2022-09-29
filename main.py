@@ -25,7 +25,7 @@ GPIO.setup(ENB_PIN, GPIO.OUT)
 GPIO.setup(IN3, GPIO.OUT)
 GPIO.setup(IN4, GPIO.OUT)
 
-# =================================================== #
+# ================================================================ #
 # =================== Ultrasonic Sensor PINS ===================== #
 GPIO.setup(TRIG_PIN_A, GPIO.OUT)
 GPIO.setup(ECHO_PIN_A, GPIO.IN)
@@ -33,8 +33,8 @@ GPIO.setup(ECHO_PIN_A, GPIO.IN)
 GPIO.setup(TRIG_PIN_B, GPIO.OUT)
 GPIO.setup(ECHO_PIN_B, GPIO.IN)
 
-# =================================================== #
-# =================== IR Sensor PIN ===================== #
+# ================================================================ #
+# =================== IR Sensor PIN ============================== #
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
