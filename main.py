@@ -27,8 +27,11 @@ GPIO.setup(IN4, GPIO.OUT)
 
 # =================================================== #
 # =================== Ultrasonic Sensor PINS ===================== #
-GPIO.setup(TRIG_PIN, GPIO.OUT)
-GPIO.setup(ECHO_PIN, GPIO.IN)
+GPIO.setup(TRIG_PIN_A, GPIO.OUT)
+GPIO.setup(ECHO_PIN_A, GPIO.IN)
+
+GPIO.setup(TRIG_PIN_B, GPIO.OUT)
+GPIO.setup(ECHO_PIN_B, GPIO.IN)
 
 # =================================================== #
 # =================== IR Sensor PIN ===================== #
