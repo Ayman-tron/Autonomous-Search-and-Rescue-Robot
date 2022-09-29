@@ -3,9 +3,6 @@ import time
 
 
 def imu_data(mpu):
-    
-    print("Temp : "+str(mpu.get_temp()))
-    print()
 
     gyro_data = mpu.get_gyro_data()
 
@@ -19,4 +16,4 @@ while True:
     print("Gyro Z : "+str(test['z']))
     print()
     print("-------------------------------")
-    time.sleep(5)
+    time.sleep(2.5)
