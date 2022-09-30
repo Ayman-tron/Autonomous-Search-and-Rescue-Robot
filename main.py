@@ -44,11 +44,13 @@ def get_data():
     x = sensor.ir()
     return (right, left, x)
 
-
+# pwm signal for turning should be 40
+# The argument for the turning functions are degrees and pwm 
+# The argument for the forward and backward is distance and pwm
 def main():
     #    robot.forward(5)
  #   time.sleep(0.5)
-    robot.forward(10, 60)
+    robot.right(90, 40)
     
     GPIO.cleanup()
     #    time.sleep(0.5)
