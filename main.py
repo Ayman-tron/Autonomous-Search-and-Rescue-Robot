@@ -48,7 +48,9 @@ def get_data():
 def main():
     #    robot.forward(5)
  #   time.sleep(0.5)
-    robot.forward(2.5, 50)
+    robot.forward(10, 60)
+    
+    GPIO.cleanup()
     #    time.sleep(0.5)
     #    robot.forward(10, 85)
     #    time.sleep(0.5)
