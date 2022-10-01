@@ -73,7 +73,7 @@ class Robot:
 
     def right(self, degree, pwm):
         # delay because we want the robot still before it turns
-        
+
         myPWM = GPIO.PWM(ENA_PIN, 100)
         myPWM.start(pwm)
 
@@ -85,7 +85,7 @@ class Robot:
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
-        
+
         t = (degree + 4)/183.71
         time.sleep(t)
 
@@ -94,76 +94,3 @@ class Robot:
         GPIO.output(IN1, GPIO.LOW)
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.LOW)
-
-# =================================================
-# =================================================
-    # Both motors are rotating forward
-
-    def calF(self):
-        # Motor # 1
-        # Creating a PWM object
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
-
-        GPIO.output(IN1, GPIO.HIGH)
-        GPIO.output(IN2, GPIO.LOW)
-
-        # Motor # 2
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
-    #    myPWM.ChangeFrequency(1000)
-        GPIO.output(IN3, GPIO.LOW)
-        GPIO.output(IN4, GPIO.HIGH)
-
-        # Time measurement is in seconds
-        time.sleep(5)
-
-    # Both motors are rotating backward
-
-    def calB(self):
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
-        GPIO.output(IN2, GPIO.HIGH)
-        GPIO.output(IN1, GPIO.LOW)
-    #  myPWM.ChangeDutyCycle(99)
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
-
-        GPIO.output(IN4, GPIO.LOW)
-        GPIO.output(IN3, GPIO.HIGH)
-
-        time.sleep(5)
-
-    # Right motor runs backward while left motor runs forward
-
-    def calR(self):
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
-
-        GPIO.output(IN2, GPIO.HIGH)
-        GPIO.output(IN1, GPIO.LOW)
-
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
-
-        GPIO.output(IN4, GPIO.HIGH)
-        GPIO.output(IN3, GPIO.LOW)
-
-        time.sleep(5)
-
-    # Right motor runs forward while left motor runs backward
-
-    def calL(self):
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(99)
-
-        GPIO.output(IN2, GPIO.LOW)
-        GPIO.output(IN1, GPIO.HIGH)
-
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(99)
-
-        GPIO.output(IN4, GPIO.LOW)
-        GPIO.output(IN3, GPIO.HIGH)
-
-        time.sleep(5)

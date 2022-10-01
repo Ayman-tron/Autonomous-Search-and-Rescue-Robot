@@ -45,32 +45,19 @@ def get_data():
     return (right, left, x)
 
 # pwm signal for turning should be 40
-# The argument for the turning functions are degrees and pwm 
+# The argument for the turning functions are degrees and pwm
 # The argument for the forward and backward is distance and pwm
-def main():
- #    robot.forward(0.5, 40)
- #   time.sleep(0.5)
-     robot.right(360, 35)
-    
-    #    time.sleep(0.5)
-   # robot.forward(2, 60)
-    # GPIO.cleanup()
 
-    #    time.sleep(0.5)
-    #robot.forward(10, 70)
-    #    time.sleep(0.5)
-    #robot.backward(10, 70)
-    #    time.sleep(0.5)
-    #    robot.forward(10, 40)
-    #    time.sleep(0.5)
-    #    robot.forward(10, 25)
-    #    time.sleep(0.5)
-    #    robot.forward(10, 10)
-     try:
+
+def main():
+    try:
         while True:
             distance = get_data()
-            print(type(distance[2]))
-     except (KeyboardInterrupt, TypeError):
+            right = distance[0]
+            left = distance[1]
+            ir = distance[2]
+            print(right, left, ir)
+    except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
 
