@@ -73,7 +73,7 @@ class Robot:
 
     def right(self, degree, pwm):
         # delay because we want the robot still before it turns
-        time.sleep(0.1)
+        
         myPWM = GPIO.PWM(ENA_PIN, 100)
         myPWM.start(pwm)
 
@@ -86,7 +86,7 @@ class Robot:
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
         
-        t = (degree + 20.333)/209.71
+        t = (degree + 4)/183.71
         time.sleep(t)
 
     def stop(self):
