@@ -4,7 +4,7 @@ from move import *
 import RPi.GPIO as GPIO
 from definitions import *
 from distance import *
-import signal
+
 # Creating a robot object
 robot = Robot()
 
@@ -53,20 +53,21 @@ def get_data():
 # The argument for the turning functions are degrees and pwm
 # The argument for the forward and backward is distance and pwm
 
-def turn(channel):
-	print(GPIO.input(IR_PIN)
-#   if (ir == 1):
-#       pass
-#   else:
-#       print("Hello")
 
-#signal.pause()
+def turn(channel):
+    print("Hello")
+
 
 def main():
   # robot.forward(1, 60)
     GPIO.add_event_detect(IR_PIN, GPIO.FALLING, callback=turn)
     try:
         while True:
+            distance = get_data()
+            right = distance[0]
+            left = distance[1]
+            front = distance[2]
+            ir = distance[3]
 #            print("front before", front)
             '''while True:
                 if (front >= 3.50 and 2.00 <= left <= 7.00 and ir == 1):
@@ -76,17 +77,11 @@ def main():
                 elif (ir == 0):
                     robot.stop()
                     robot.right(90, 35)'''
-            distance = get_data()
-            right = distance[0]
-            left = distance[1]
-            front = distance[2]
-            ir = distance[3]
-            print(right, left, front, ir)
 
+            print(right, left, front, ir)
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
-
 
     # robot.calF()
     # robot.calB()
