@@ -10,7 +10,7 @@ class Robot:
 
     # Both motors are rotating forward
     # distance in meter
-    def forward(self, pwm):
+    def forward(self, distance, pwm):
         # Motor # 1
         # Creating a PWM object
         myPWM = GPIO.PWM(ENA_PIN, 100)
@@ -25,6 +25,12 @@ class Robot:
 
         GPIO.output(IN3, GPIO.LOW)
         GPIO.output(IN4, GPIO.HIGH)
+        velocity = 3.1555e-3*(pwm) + 0.0267
+
+        # Time
+        t = distance/velocity
+        # Time measurement is in seconds
+        time.sleep(t)
 
     # Both motors are rotating backward
 
@@ -59,7 +65,7 @@ class Robot:
         GPIO.output(IN4, GPIO.HIGH)
         GPIO.output(IN3, GPIO.LOW)
 
-        time.sleep(t)
+        time.sleep(1)
 
     # Right motor runs forward while left motor runs backward
 
@@ -109,6 +115,7 @@ class Robot:
         GPIO.output(IN4, GPIO.HIGH)
         # The Pwm specified won't matter when we have the formula below
         velocity = 3.1555e-3*(pwm) + 0.0267
+
         # Time
         t = distance/velocity
         # Time measurement is in seconds

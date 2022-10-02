@@ -62,16 +62,19 @@ def main():
             front = distance[2]
             ir = distance[3]
 
-            '''if (2.00 < left < 7.00) and ir == 1:
-                robot.forward(50)
-            elif (ir == 0):
-                robot.stop()
-                robot.right(90, 35)'''
+            while True:
+                if (front >= 3.50 and 2.00 <= left <= 7.00 and ir == 1):
+                    front = front - 4
+                    robot.forward(front, 60)
+                elif (ir == 0):
+                    robot.stop()
+                    robot.right(90, 35)
 
-            print(right, left, front, ir)
+            #print(right, left, front, ir)
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
+
 
     # robot.calF()
     # robot.calB()
