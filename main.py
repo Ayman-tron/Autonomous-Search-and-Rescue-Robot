@@ -1,3 +1,4 @@
+from gc import callbacks
 import time
 from move import *
 import RPi.GPIO as GPIO
@@ -53,8 +54,13 @@ def get_data():
 # The argument for the forward and backward is distance and pwm
 
 
+def turn(channel):
+    print("Hello")
+
+
 def main():
   # robot.forward(1, 60)
+    GPIO.add_event_detect(IR_PIN, GPIO.FALLING, callback=turn)
     try:
         while True:
             distance = get_data()
@@ -63,20 +69,19 @@ def main():
             front = distance[2]
             ir = distance[3]
 #            print("front before", front)
-            while True:
+            '''while True:
                 if (front >= 3.50 and 2.00 <= left <= 7.00 and ir == 1):
                     front = front - 4
 #                    print("front after", front)
                     robot.forward(front/100, 60)
                 elif (ir == 0):
                     robot.stop()
-                    robot.right(90, 35)
+                    robot.right(90, 35)'''
 
-            #print(right, left, front, ir)
+            print(right, left, front, ir)
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
-
 
     # robot.calF()
     # robot.calB()
