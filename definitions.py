@@ -24,5 +24,9 @@ ECHO_PIN_A = 18
 TRIG_PIN_B = 38
 ECHO_PIN_B = 40
 
+# Pins used to configure the UltraSonic Sensor on the Front side of the robot
+TRIG_PIN_C = 35
+ECHO_PIN_C = 37
+
 # Pin that reads from the IR sensor to tell us whether an obstacle is present or not
 IR_PIN = 21

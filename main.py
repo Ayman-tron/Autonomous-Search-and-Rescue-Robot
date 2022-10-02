@@ -33,6 +33,9 @@ GPIO.setup(ECHO_PIN_A, GPIO.IN)
 GPIO.setup(TRIG_PIN_B, GPIO.OUT)
 GPIO.setup(ECHO_PIN_B, GPIO.IN)
 
+GPIO.setup(TRIG_PIN_C, GPIO.OUT)
+GPIO.setup(ECHO_PIN_C, GPIO.IN)
+
 # ================================================================ #
 # =================== IR Sensor PIN ============================== #
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -41,8 +44,9 @@ GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def get_data():
     right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
     left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
+    front = sensor.ultrasonic(TRIG_PIN_C, ECHO_PIN_C)
     x = sensor.ir()
-    return (right, left, x)
+    return (right, left, front, x)
 
 # pwm signal for turning should be 40
 # The argument for the turning functions are degrees and pwm
@@ -55,15 +59,16 @@ def main():
             distance = get_data()
             right = distance[0]
             left = distance[1]
-            ir = distance[2]
+            front = distance[2]
+            ir = distance[3]
 
-            if (2.00 < left < 7.00) and ir == 1:
+            '''if (2.00 < left < 7.00) and ir == 1:
                 robot.forward(50)
             elif (ir == 0):
                 robot.stop()
-                robot.right(90, 35)
+                robot.right(90, 35)'''
 
-            #print(right, left, ir)
+            print(right, left, front, ir)
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
