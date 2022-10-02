@@ -54,6 +54,7 @@ def get_data():
 
 
 def main():
+  # robot.forward(1, 60)
     try:
         while True:
             distance = get_data()
@@ -61,11 +62,12 @@ def main():
             left = distance[1]
             front = distance[2]
             ir = distance[3]
-
+#            print("front before", front)
             while True:
                 if (front >= 3.50 and 2.00 <= left <= 7.00 and ir == 1):
                     front = front - 4
-                    robot.forward(front, 60)
+#                    print("front after", front)
+                    robot.forward(front/100, 60)
                 elif (ir == 0):
                     robot.stop()
                     robot.right(90, 35)
