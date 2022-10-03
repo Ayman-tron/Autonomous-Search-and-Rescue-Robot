@@ -7,21 +7,24 @@ GPIO.setmode(GPIO.BOARD)
 
 
 class Robot:
+    def __init__(self):
+        self.myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM2 = GPIO.PWM(ENB_PIN, 100)
 
     # Both motors are rotating forward
     # distance in meter
     def forward(self, distance, pwm):
         # Motor # 1
         # Creating a PWM object
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.self.myPWM.start(pwm)
 
         GPIO.output(IN1, GPIO.HIGH)
         GPIO.output(IN2, GPIO.LOW)
 
         # Motor # 2
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        # myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.self.myPWM2.start(pwm)
 
         GPIO.output(IN3, GPIO.LOW)
         GPIO.output(IN4, GPIO.HIGH)
@@ -35,14 +38,14 @@ class Robot:
     # Both motors are rotating backward
 
     def backward(self, pwm):
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
     #  myPWM.ChangeDutyCycle(99)
         myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        self.myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
@@ -51,14 +54,14 @@ class Robot:
 
     def left(self, degree, pwm):
         time.sleep(0.1)
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
 
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.myPWM2.start(pwm)
 
         t = (degree + 20.333)/209.71
 
@@ -72,14 +75,13 @@ class Robot:
     def right(self, degree, pwm):
         # delay because we want the robot still before it turns
 
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.LOW)
         GPIO.output(IN1, GPIO.HIGH)
 
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
@@ -101,15 +103,15 @@ class Robot:
     def calF(self, distance, pwm):
         # Motor # 1
         # Creating a PWM object
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN1, GPIO.HIGH)
         GPIO.output(IN2, GPIO.LOW)
 
         # Motor # 2
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.myPWM2.start(pwm)
     #    myPWM.ChangeFrequency(1000)
         GPIO.output(IN3, GPIO.LOW)
         GPIO.output(IN4, GPIO.HIGH)
@@ -124,14 +126,14 @@ class Robot:
     # Both motors are rotating backward
 
     def calB(self, distance, pwm):
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
     #  myPWM.ChangeDutyCycle(99)
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
@@ -142,14 +144,14 @@ class Robot:
 
     def calL(self, degree, pwm):
         time.sleep(0.1)
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
 
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.myPWM2.start(pwm)
 
         t = (degree + 20.333)/209.71
 
@@ -163,14 +165,14 @@ class Robot:
     def calR(self, degree, pwm):
         # delay because we want the robot still before it turns
 
-        myPWM = GPIO.PWM(ENA_PIN, 100)
-        myPWM.start(pwm)
+        #myPWM = GPIO.PWM(ENA_PIN, 100)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN2, GPIO.LOW)
         GPIO.output(IN1, GPIO.HIGH)
 
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        myPWM2.start(pwm)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        self.myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)
         GPIO.output(IN3, GPIO.HIGH)
