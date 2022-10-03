@@ -1,7 +1,7 @@
 import time
 import RPi.GPIO as GPIO
 from definitions import *
-GPIO.setmode(GPIO.BOARD)
+# GPIO.setmode(GPIO.BOARD)
 
 # Robot class with functions that allow Robot to move forward, backward, left and right
 
@@ -17,14 +17,14 @@ class Robot:
         # Motor # 1
         # Creating a PWM object
         #myPWM = GPIO.PWM(ENA_PIN, 100)
-        self.self.myPWM.start(pwm)
+        self.myPWM.start(pwm)
 
         GPIO.output(IN1, GPIO.HIGH)
         GPIO.output(IN2, GPIO.LOW)
 
         # Motor # 2
         # myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        self.self.myPWM2.start(pwm)
+        self.myPWM2.start(pwm)
 
         GPIO.output(IN3, GPIO.LOW)
         GPIO.output(IN4, GPIO.HIGH)
@@ -44,7 +44,7 @@ class Robot:
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
     #  myPWM.ChangeDutyCycle(99)
-        myPWM2 = GPIO.PWM(ENB_PIN, 100)
+        #myPWM2 = GPIO.PWM(ENB_PIN, 100)
         self.myPWM2.start(pwm)
 
         GPIO.output(IN4, GPIO.LOW)

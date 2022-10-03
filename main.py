@@ -6,7 +6,7 @@ from definitions import *
 from distance import *
 
 # Creating a robot object
-robot = Robot()
+
 
 # Creating a sensor objuct
 sensor = Sensor()
@@ -17,7 +17,7 @@ GPIO.setmode(GPIO.BOARD)
 # =================== Motor Driver Pin ===================== #
 # Specifying that the below pins are Output Pins
 # Motor 1 Pins
-GPIO.setup(ENA_PIN, GPIO.OUT)
+
 GPIO.setup(IN1, GPIO.OUT)
 GPIO.setup(IN2, GPIO.OUT)
 
@@ -41,6 +41,8 @@ GPIO.setup(ECHO_PIN_C, GPIO.IN)
 # =================== IR Sensor PIN ============================== #
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+robot = Robot()
+
 
 def get_data():
     right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
@@ -52,18 +54,20 @@ def get_data():
 # pwm signal for turning should be 40
 # The argument for the turning functions are degrees and pwm
 # The argument for the forward and backward is distance and pwm
-   
 
 
 def turn(channel):
     #GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
-    
-    robot.right(90, 35)
-   # robot.stop()   
+    print("Obstacle Detected")
+    #robot.right(90, 35)
+    # robot.stop()
+
 
 def main():
   # robot.forward(1, 60)
-    GPIO.add_event_detect(IR_PIN, GPIO.FALLING, callback=turn, bouncetime = 2500)
+    GPIO.add_event_detect(IR_PIN, GPIO.FALLING, callback=turn, bouncetime=2500)
+    robot.stop()
+
     try:
         while True:
             distance = get_data()
@@ -71,13 +75,7 @@ def main():
             left = distance[1]
             front = distance[2]
             ir = distance[3]
-#            print("front before", front)
-            while True:
-                if (front >= 3.50 and 2.00 <= left <= 10.00 and ir == 1):
-                    front = front - 4
-#                    print("front after", front)
-                    robot.forward(front/100, 60)
-
+            #robot.forward(front/100, 60)
 #            print(right, left, front, ir)
            # GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
            # robot.right(90, 35)
