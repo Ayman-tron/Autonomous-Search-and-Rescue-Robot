@@ -32,5 +32,5 @@ class Sensor:
 
     def ir(self):
         readVal = GPIO.input(IR_PIN)
-        time.sleep(0.1)
+        time.sleep(0.2)
         return readVal
