@@ -1,6 +1,3 @@
-"""Ivmech PID Controller is simple implementation of a Proportional-Integral-Derivative (PID) Controller in the Python Programming Language.
-More information about PID Controller: http://en.wikipedia.org/wiki/PID_controller
-"""
 import time
 
 class PID:
@@ -12,63 +9,35 @@ class PID:
         self.Kp = P
         self.Ki = I
         self.Kd = D
- 
-        self.sample_time = 0.00 # 目标值（单位等同于反馈值的单位）
-        self.current_time = time.time()
-        self.last_time = self.current_time
-
+	
         self.clear()
 
     def clear(self):
         """Clears PID computations and coefficients"""
         self.SetPoint = 5.0
-
-        self.PTerm = 0.0
-        self.ITerm = 0.0
-        self.DTerm = 0.0
-        self.last_error = 0.0
-
-        # Windup Guard
-        self.int_error = 0.0
-        self.windup_guard = 20.0
-
+        self.CurrentError = 0.0 #Error[k]
+        self.LastError = 0.0 #Error[k-1]
+        self.PrevError = 0.0 #Error[k-2]
         self.output = 0.0
 
     def update(self, feedback_value): 
         """Calculates PID value for given reference feedback
-        .. math::
-            u(t) = K_p e(t) + K_i \int_{0}^{t} e(t)dt + K_d {de}/{dt}
-        .. figure:: images/pid_1.png
-           :align:   center
-           Test PID with Kp=1.2, Ki=1, Kd=0.001 (test_pid.py)
+
+        ..Incremental digital PID： 
+            u(k)=K_p * ( e[k] - e[k-1] ) + K_i * e[k]  + K_d * ( e[k] - 2* e[k-1] + e[k-2] ) 
+
         """
-        error = self.SetPoint - feedback_value
+        self.CurrentError = self.SetPoint - feedback_value
+        #PID calculating
+        self.output = self.output+self.Kp * ( self.CurrentError- self.LastError) + self.Ki * self.CurrentError  + self.Kd *(self.CurrentError -2*self.LastError +self.PrevError)
+        
+        #save the old value of error
+        self.PrevError = self.LastError            
+        self.LastError = self.CurrentError
 
-        self.current_time = time.time()
-        delta_time = self.current_time - self.last_time
-        delta_error = error - self.last_error
 
-        if (delta_time >= self.sample_time):
-            self.PTerm = self.Kp * error
-            self.ITerm += error * delta_time
-            #print("I got it")
-
-            if (self.ITerm < -self.windup_guard):
-                self.ITerm = -self.windup_guard
-            elif (self.ITerm > self.windup_guard):
-                self.ITerm = self.windup_guard
-
-            self.DTerm = 0.0
-            if delta_time > 0:
-                self.DTerm = delta_error / delta_time
-
-            # Remember last time and last error for next calculation
-            self.last_time = self.current_time
-            self.last_error = error
-
-            self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # 这个self.output的值要给到电机输出部分代码
-            print(self.output)
-            return self.output
+        print(self.output)
+        return self.output
 
     def setKp(self, proportional_gain):
         """Determines how aggressively the PID reacts to the current error with setting Proportional Gain"""
@@ -107,4 +76,3 @@ if __name__ == '__main__':
     x_pid.update(10)
     out = x_pid.output
     print (out)
-

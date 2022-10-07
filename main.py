@@ -41,9 +41,12 @@ GPIO.setup(ECHO_PIN_C, GPIO.IN)
 # =================== IR Sensor PIN ============================== #
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+<<<<<<< Updated upstream
 robot = Robot()
 
 
+=======
+>>>>>>> Stashed changes
 def get_data():
     right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
     left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
@@ -55,6 +58,7 @@ def get_data():
 # The argument for the turning functions are degrees and pwm
 # The argument for the forward and backward is distance and pwm
 
+<<<<<<< Updated upstream
 
 def turn(channel):
     #GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
@@ -84,6 +88,22 @@ def main():
         GPIO.cleanup()
         print(" Cleanup successful")
 
+=======
+ #GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
+    
+   # robot.stop()   
+
+def main():
+  # robot.forward(0.18, 50)
+  # robot.stop()
+  # time.sleep(2)
+   robot.left(90, 35)
+   robot.stop()
+   time.sleep(1)
+  # robot.forward(0.6, 50)
+   robot.stop()
+  # robot.left(90, 35)
+>>>>>>> Stashed changes
     # robot.calF()
     # robot.calB()
     # robot.calR()
