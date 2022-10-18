@@ -4,24 +4,20 @@ from move import *
 import RPi.GPIO as GPIO
 from definitions import *
 from distance import *
-
-# Creating a robot object
-
-
-# Creating a sensor objuct
-sensor = Sensor()
+from pid_test import *
+import numpy as np
 
 GPIO.setmode(GPIO.BOARD)
 
 # =================================================== #
 # =================== Motor Driver Pin ===================== #
 # Specifying that the below pins are Output Pins
-# Motor 1 Pins
-
+# Motor 1 Pins left
+GPIO.setup(ENA_PIN, GPIO.OUT)
 GPIO.setup(IN1, GPIO.OUT)
 GPIO.setup(IN2, GPIO.OUT)
 
-# Motor 2 Pins
+# Motor 2 Pins right
 GPIO.setup(ENB_PIN, GPIO.OUT)
 GPIO.setup(IN3, GPIO.OUT)
 GPIO.setup(IN4, GPIO.OUT)
@@ -39,14 +35,13 @@ GPIO.setup(ECHO_PIN_C, GPIO.IN)
 
 # ================================================================ #
 # =================== IR Sensor PIN ============================== #
+
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
-<<<<<<< Updated upstream
+# ================================================================ #
 robot = Robot()
+sensor = Sensor()
 
 
-=======
->>>>>>> Stashed changes
 def get_data():
     right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
     left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
@@ -58,7 +53,6 @@ def get_data():
 # The argument for the turning functions are degrees and pwm
 # The argument for the forward and backward is distance and pwm
 
-<<<<<<< Updated upstream
 
 def turn(channel):
     #GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
@@ -68,44 +62,54 @@ def turn(channel):
 
 
 def main():
-  # robot.forward(1, 60)
-    GPIO.add_event_detect(IR_PIN, GPIO.FALLING, callback=turn, bouncetime=2500)
-    robot.stop()
-
     try:
         while True:
             distance = get_data()
-            right = distance[0]
-            left = distance[1]
-            front = distance[2]
+            # right = distance[0]
+            # left = distance[1]
+            # front = distance[2]
             ir = distance[3]
-            #robot.forward(front/100, 60)
-#            print(right, left, front, ir)
-           # GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
-           # robot.right(90, 35)
+            pid = PID(P=0.5, I=0.15, D=0.08)
+            # left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
+
+            right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
+            print("Right: " + str(right))
+            #ir = sensor.ir()
+
+            pid.SetPoint = 6
+            pid_control = pid.update(right)
+            # print(type(pid_control))
+            # print(pid_control)
+
+            if 0 < right < 15:
+                if abs(pid_control) > 10 and ir == 1:
+                    pid_control = np.sign(pid_control)*50
+
+                if pid_control > 0 and ir == 1:
+                    robot.forward(20, 15+pid_control)
+                    print("new:"+str(pid_control))
+                    print("turing left")
+                elif pid_control < 0 and ir == 1:
+                    robot.forward(20+abs(pid_control), 15)
+                    print("turing right")
+                    print("new:"+str(pid_control))
+                elif ir == 0:
+                    robot.stop()
+                    time.sleep(2)
+                    robot.left()
+                    time.sleep(0.00001)
+            elif 15 < right:
+                robot.forward(20, 15)
+            print("===================================")
 
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
         print(" Cleanup successful")
 
-=======
- #GPIO.wait_for_edge(IR_PIN, GPIO.FALLING)
-    
-   # robot.stop()   
-
-def main():
-  # robot.forward(0.18, 50)
-  # robot.stop()
-  # time.sleep(2)
-   robot.left(90, 35)
-   robot.stop()
-   time.sleep(1)
-  # robot.forward(0.6, 50)
-   robot.stop()
-  # robot.left(90, 35)
->>>>>>> Stashed changes
     # robot.calF()
     # robot.calB()
     # robot.calR()
     # robot.calL()
+
+
 main()

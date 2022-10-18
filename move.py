@@ -15,7 +15,7 @@ class Robot:
 
     # Both motors are rotating forward
     # distance in meter
-    def forward(self,pwm_left,pwm_right):
+    def forward(self, pwm_left, pwm_right):
         # Motor # 1
         # Creating a PWM object
         #myPWM = GPIO.PWM(ENA_PIN, 100)
@@ -25,7 +25,7 @@ class Robot:
             GPIO.output(IN1, GPIO.HIGH)
             GPIO.output(IN2, GPIO.LOW)
         elif pwm_left < 0:
-            
+
             self.myPWM.ChangeDutyCycle(abs(pwm_left))
             GPIO.output(IN1, GPIO.LOW)
             GPIO.output(IN2, GPIO.HIGH)
@@ -46,7 +46,6 @@ class Robot:
         # # Time
         # t = distance/velocity
         # # Time measurement is in seconds
-        
 
     # # Both motors are rotating backward
 
@@ -65,8 +64,8 @@ class Robot:
 
     # Right motor runs backward while left motor runs forward
 
-    def left(self, pwm_left=20,pwm_right=20):
-        
+    def left(self, pwm_left=20, pwm_right=20):
+
         #myPWM = GPIO.PWM(ENA_PIN, 100)
         self.myPWM.ChangeDutyCycle(pwm_left)
 
@@ -81,7 +80,6 @@ class Robot:
         GPIO.output(IN4, GPIO.HIGH)
         GPIO.output(IN3, GPIO.LOW)
         #t = (10 + 4)/183.71
-        
 
     # Right motor runs forward while left motor runs backward
 
@@ -158,7 +156,7 @@ class Robot:
     # Right motor runs backward while left motor runs forward
 
     def calL(self, degree, pwm):
-        #time.sleep(0.1)
+        # time.sleep(0.1)
         #myPWM = GPIO.PWM(ENA_PIN, 100)
         self.myPWM.ChangeDutyCycle(pwm)
 
