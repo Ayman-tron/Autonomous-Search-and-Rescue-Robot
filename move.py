@@ -163,8 +163,8 @@ class Robot:
         #myPWM2 = GPIO.PWM(ENB_PIN, 100)
         self.myPWM2.ChangeDutyCycle(pwm)
 
-        t = (degree + 4)/183.71
-
+        #t = (degree + 4)/183.71
+        t = degree
         GPIO.output(IN4, GPIO.HIGH)
         GPIO.output(IN3, GPIO.LOW)
 
