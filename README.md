@@ -1,4 +1,4 @@
-﻿# Maze_Solving_Robot
+﻿# ASCBot
 
 ## Scope of the project is the development of a two wheeled mobile RaspBerry Pi Robot.
 
