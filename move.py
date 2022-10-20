@@ -41,11 +41,6 @@ class Robot:
             self.myPWM2.ChangeDutyCycle(abs(pwm_right))
             GPIO.output(IN3, GPIO.HIGH)
             GPIO.output(IN4, GPIO.LOW)
-        # velocity = 3.1555e-3*(pwm) + 0.0267
-
-        # # Time
-        # t = distance/velocity
-        # # Time measurement is in seconds
 
     # # Both motors are rotating backward
 
