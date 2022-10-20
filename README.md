@@ -18,5 +18,10 @@ The components that will be used in the project involve the following:
 
 ### Documentation on Source Code
 
+<p></b>definition.py</b> - module where GPIO Pin variables are defined</p>
 <p></b>main.py</b> - Interacts with all other modules and acts as the control program</p>
+<p></b>move.py</b> - contains function of robot such as moving forward, backward, and turning</p>
+<p></b>pid.py</b> -  module that contains pid algorithm</p>
+<p></b>distance.py</b> - module that interacts with sensors to get distance data</p>
+
 
