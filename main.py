@@ -74,7 +74,7 @@ def main():
 
     try:
         while True:
-            robot.calL(0.5, 35)
+           # robot.calL(0.5, 35)
             distance = get_data()
             # right = distance[0]
             # left = distance[1]
