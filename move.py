@@ -64,26 +64,28 @@ class Robot:
 
     # Right motor runs backward while left motor runs forward
 
-    def left(self, pwm_left=20, pwm_right=20):
+    def left(self, degree, pwm=20):
 
         #myPWM = GPIO.PWM(ENA_PIN, 100)
-        self.myPWM.ChangeDutyCycle(pwm_left)
+        self.myPWM.ChangeDutyCycle(pwm)
 
         GPIO.output(IN2, GPIO.HIGH)
         GPIO.output(IN1, GPIO.LOW)
 
         #myPWM2 = GPIO.PWM(ENB_PIN, 100)
-        self.myPWM2.ChangeDutyCycle(pwm_right)
+        self.myPWM2.ChangeDutyCycle(pwm)
 
         # t = (degree + 20.333)/209.71
 
         GPIO.output(IN4, GPIO.HIGH)
         GPIO.output(IN3, GPIO.LOW)
         #t = (10 + 4)/183.71
+        t = (degree + 4)/183.71
+        time.sleep(t)
 
     # Right motor runs forward while left motor runs backward
 
-    def right(self, degree, pwm):
+    def right(self, degree, pwm=20):
         # delay because we want the robot still before it turns
 
         self.myPWM.ChangeDutyCycle(pwm)

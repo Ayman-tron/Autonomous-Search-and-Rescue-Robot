@@ -1,5 +1,6 @@
 import time
 
+
 class PID:
     """PID Controller
     """
@@ -9,18 +10,19 @@ class PID:
         self.Kp = P
         self.Ki = I
         self.Kd = D
-	
+
         self.clear()
 
     def clear(self):
         """Clears PID computations and coefficients"""
         self.SetPoint = 5.0
-        self.CurrentError = 0.0 #Error[k]
-        self.LastError = 0.0 #Error[k-1]
-        self.PrevError = 0.0 #Error[k-2]
+        self.CurrentError = 0.0  # Error[k]
+        self.LastError = 0.0  # Error[k-1]
+        self.PrevError = 0.0  # Error[k-2]
         self.output = 0.0
+        self.Lastoutput = 0.0
 
-    def update(self, feedback_value): 
+    def update(self, feedback_value):
         """Calculates PID value for given reference feedback
 
         ..Incremental digital PID： 
@@ -28,15 +30,17 @@ class PID:
 
         """
         self.CurrentError = self.SetPoint - feedback_value
-        #PID calculating
-        self.output = self.output+self.Kp * ( self.CurrentError- self.LastError) + self.Ki * self.CurrentError  + self.Kd *(self.CurrentError -2*self.LastError +self.PrevError)
-        
-        #save the old value of error
-        self.PrevError = self.LastError            
+        # PID calculating
+        self.output = self.Lastoutput + self.Kp * (self.CurrentError - self.LastError) + self.Ki * \
+            self.CurrentError + self.Kd * \
+            (self.CurrentError - 2*self.LastError + self.PrevError)
+        self.output += self.output
+        # save the old value of error
+        self.PrevError = self.LastError
         self.LastError = self.CurrentError
-
-
-        print(self.output)
+        self.Lastoutput = self.output
+        print("Lastoutput:" + str(self.Lastoutput))
+        print("Output:" + str(self.output))
         return self.output
 
     def setKp(self, proportional_gain):
@@ -75,4 +79,4 @@ if __name__ == '__main__':
     x_pid.SetPoint = 5
     x_pid.update(10)
     out = x_pid.output
-    print (out)
+    print(out)

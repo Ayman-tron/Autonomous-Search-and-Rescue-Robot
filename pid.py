@@ -3,6 +3,7 @@ More information about PID Controller: http://en.wikipedia.org/wiki/PID_controll
 """
 import time
 
+
 class PID:
     """PID Controller
     """
@@ -12,8 +13,8 @@ class PID:
         self.Kp = P
         self.Ki = I
         self.Kd = D
- 
-        self.sample_time = 0.00 # 目标值（单位等同于反馈值的单位）
+
+        self.sample_time = 0.00  # 目标值（单位等同于反馈值的单位）
         self.current_time = time.time()
         self.last_time = self.current_time
 
@@ -34,7 +35,7 @@ class PID:
 
         self.output = 0.0
 
-    def update(self, feedback_value): 
+    def update(self, feedback_value):
         """Calculates PID value for given reference feedback
         .. math::
             u(t) = K_p e(t) + K_i \int_{0}^{t} e(t)dt + K_d {de}/{dt}
@@ -46,6 +47,8 @@ class PID:
 
         self.current_time = time.time()
         delta_time = self.current_time - self.last_time
+        print("delta_time:" + str(delta_time))
+
         delta_error = error - self.last_error
 
         if (delta_time >= self.sample_time):
@@ -66,7 +69,9 @@ class PID:
             self.last_time = self.current_time
             self.last_error = error
 
-            self.output = self.PTerm + (self.Ki * self.ITerm) + (self.Kd * self.DTerm) # 这个self.output的值要给到电机输出部分代码
+            # 这个self.output的值要给到电机输出部分代码
+            self.output = self.PTerm + \
+                (self.Ki * self.ITerm) + (self.Kd * self.DTerm)
             print(self.output)
             return self.output
 
@@ -106,5 +111,4 @@ if __name__ == '__main__':
     x_pid.SetPoint = 5
     x_pid.update(10)
     out = x_pid.output
-    print (out)
-
+    print(out)

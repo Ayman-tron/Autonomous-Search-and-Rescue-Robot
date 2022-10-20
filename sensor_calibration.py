@@ -35,7 +35,6 @@ GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # ================================================================ #
 
 
-
 def get_data():
     right = sensor.ultrasonic(TRIG_PIN_A, ECHO_PIN_A)
     left = sensor.ultrasonic(TRIG_PIN_B, ECHO_PIN_B)
@@ -55,7 +54,6 @@ def turn(channel):
     # robot.stop()
 
 
-
 def main():
   # robot.forward(1, 60)
     # GPIO.add_event_detect(IR_PIN, GPIO.FALLING, callback=turn, bouncetime=2500)
@@ -68,15 +66,12 @@ def main():
             left = distance[1]
             front = distance[2]
             ir = distance[3]
-            
+
             print("Right:" + str(right))
             # print("Left: " + str(left))
             # print("Front: " + str(front))
 
             print("===================================")
-            
-
-           
 
     except (KeyboardInterrupt, TypeError):
         GPIO.cleanup()
@@ -86,5 +81,6 @@ def main():
     # robot.calB()
     # robot.calR()
     # robot.calL()
+
 
 main()
