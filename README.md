@@ -16,7 +16,12 @@ The components that will be used in the project involve the following:
 <li>IR sensor</li>
 </ul>
 
-### Documentation on Sensor Configuration
+### Documentation on Source Code
 
-<h1>IR Sensor</h1>
-In case, Pin 21 is disconnected the internal resistor of the Pi will ensure that the value does not fluctuate between 1 and 0. In this case we are using a pull up resistor which means when the wire is disconnected Pin 21 will read a 1
+<p></b>definition.py</b> - module where GPIO Pin variables are defined</p>
+<p></b>main.py</b> - Interacts with all other modules and acts as the control program</p>
+<p></b>move.py</b> - contains function of robot such as moving forward, backward, and turning</p>
+<p></b>pid.py</b> -  module that contains pid algorithm</p>
+<p></b>distance.py</b> - module that interacts with sensors to get distance data</p>
+
+
